@@ -5,7 +5,7 @@ import {
   FETCH_QUIZES_START,
   FETCH_QUIZES_SUCCESS,
   FINISH_QUIZ,
-  QUIZ_NEXT_QUESTSION,
+  QUIZ_NEXT_QUESTION,
   QUIZ_RETRY,
   QUIZ_SET_STATE
 } from "../actions/actionTypes";
@@ -64,7 +64,7 @@ export default function quizReducer(state = initialState, action) {
         ...state,
         isFinished: true
       };
-    case QUIZ_NEXT_QUESTSION:
+    case QUIZ_NEXT_QUESTION:
       return {
         ...state,
         answerState: null,

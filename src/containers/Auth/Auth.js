@@ -3,9 +3,11 @@ import classes from "./Auth.css";
 import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
 import is from "is_js";
-import axsios from "axios";
 
-export default class Auth extends Component {
+import { connect } from "react-redux";
+import { auth } from "../../store/actions/auth";
+
+class Auth extends Component {
   state = {
     isFormValid: false,
     formControls: {
@@ -35,41 +37,15 @@ export default class Auth extends Component {
       }
     }
   };
-  apiKey = "AIzaSyCwb2wmaKLnkCRkujldO1jpWC0fFC9gYMA";
-  loginHandler = async () => {
+
+  loginHandler = () => {
     const { email, password } = this.state.formControls;
-    const authData = {
-      email: email.value,
-      password: password.value,
-      returnSecureToken: true
-    };
-    try {
-      const response = await axsios.post(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.apiKey}`,
-        authData
-      );
-      console.log(response.data);
-    } catch (e) {
-      console.log(e);
-    }
+    this.props.auth(email.value, password.value, true);
   };
 
-  registerHandler = async () => {
+  registerHandler = () => {
     const { email, password } = this.state.formControls;
-    const authData = {
-      email: email.value,
-      password: password.value,
-      returnSecureToken: true
-    };
-    try {
-      const response = await axsios.post(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.apiKey}`,
-        authData
-      );
-      console.log(response.data);
-    } catch (e) {
-      console.log(e);
-    }
+    this.props.auth(email.value, password.value, false);
   };
 
   submitHandler = event => {
@@ -169,3 +145,12 @@ export default class Auth extends Component {
     );
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    auth: (email, password, isLogin) => {
+      dispatch(auth(email, password, isLogin));
+    }
+  };
+}
+export default connect(null, mapDispatchToProps)(Auth);

@@ -7,7 +7,7 @@ import {
   FETCH_QUIZ_SUCCESS,
   QUIZ_SET_STATE,
   FINISH_QUIZ,
-  QUIZ_NEXT_QUESTSION,
+  QUIZ_NEXT_QUESTION,
   QUIZ_RETRY
 } from "./actionTypes";
 
@@ -89,7 +89,7 @@ function finishQuiz() {
 
 function quizNextQuestion(number) {
   return {
-    type: QUIZ_NEXT_QUESTSION,
+    type: QUIZ_NEXT_QUESTION,
     number
   };
 }
