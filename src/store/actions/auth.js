@@ -22,7 +22,7 @@ function autoLogout(time) {
 
 export function auth(email, password, isLogin) {
   return async dispatch => {
-    const apiKey = "AIzaSyCwb2wmaKLnkCRkujldO1jpWC0fFC9gYMA";
+    const apiKey = "";
     const authData = {
       email,
       password,
